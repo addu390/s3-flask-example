@@ -2,14 +2,19 @@ from flask import Flask, request
 import requests
 import boto3
 import os
+from dotenv import load_dotenv, find_dotenv
+import uuid
+
+load_dotenv(find_dotenv())
 
 app = Flask(__name__)
 
 
 @app.route("/storedata", methods=['POST'])
-def definition():
+def store():
     data = request.get_json(force=True)
     content = data.get("data")
+    print(content)
     s3_url = upload(content)
     result = {
         "s3uri": s3_url
@@ -18,7 +23,7 @@ def definition():
 
 
 @app.route("/begin", methods=['POST'])
-def definition():
+def begin():
     data = request.get_json(force=True)
     banner_id = data.get("banner")
     ip_address = data.get("ip")
@@ -37,13 +42,17 @@ def definition():
 
 def upload(content):
     try:
-        s3 = boto3.client("s3", region_name='ca-central-1', aws_access_key_id=os.getenv('AWS_ACCESS_KEY'),
-                          aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'))
+        session = boto3.Session(
+            aws_access_key_id=os.getenv('AWS_ACCESS_KEY'),
+            aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
+        )
+        s3 = session.resource('s3')
 
-        bucket = os.getenv("AWS_BUCKET_NAME")
-        input_file = 'input.txt'
+        bucket = os.environ.get("AWS_BUCKET_NAME")
+        input_file = str(uuid.uuid4()) + ".txt"
 
-        s3.Object(bucket, input_file).put(Body=content)
+        object = s3.Object(bucket, input_file)
+        result = object.put(Body=content)
 
     except Exception as e:
         print("Error: ", e)
