@@ -53,7 +53,7 @@
 
 **Note ⚠️** For development and testing purpose only
 
-### Install and Install Python 3.9:
+### Download and [Install Python 3.9](https://tecadmin.net/install-python-3-9-on-amazon-linux/):
 - Pre-requisites: `sudo yum install gcc openssl-devel bzip2-devel libffi-devel`
 - Download Python 3.9:
 	- `cd /opt`
