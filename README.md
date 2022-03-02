@@ -26,6 +26,9 @@
 
 ### Installation:
 - Install dependencies: `pip3 install -r requirements.txt`
+
+- Create a new file `.env` with the environmental variables mentioned in `.env.example`   
+
 - Run Flask Application on Port 80: `flask run --host=0.0.0.0 --port=8080`
 
 
