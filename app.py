@@ -32,7 +32,8 @@ def begin():
         "banner": banner_id,
         "ip": ip_address
     }
-    response = requests.post('http://<ip-address>/begin', json=result)
+    request_url = 'http://{}/begin'.format(os.getenv('DAL_IP_ADDRESS'))
+    response = requests.post(request_url, json=result)
     print('response from server:', response.text)
     if response.ok:
         return response.json(), 200
@@ -51,8 +52,8 @@ def upload(content):
         bucket = os.environ.get("AWS_BUCKET_NAME")
         input_file = str(uuid.uuid4()) + ".txt"
 
-        object = s3.Object(bucket, input_file)
-        result = object.put(Body=content)
+        s3_object = s3.Object(bucket, input_file)
+        result = s3_object.put(Body=content)
 
     except Exception as e:
         print("Error: ", e)
