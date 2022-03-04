@@ -24,7 +24,7 @@
 }
 ```
 
-## Installation 🚚 
+## Installation
 - Install dependencies: `pip3 install -r requirements.txt`
 - Create a new file `.env` with the environmental variables mentioned in `.env.example`
 - Run Flask Application on Port 80: `python3.9 app.py
@@ -46,7 +46,7 @@
 ```
 **Note ⚠️** Don't use `*` privileges on production; use IAM roles instead and use signed URLs instead of using public URLs.
 
-## Quick Deployment (AWS EC2) 🛺
+## Quick Deployment (AWS EC2)
 - Create an EC2 instance (AWS Linux 2) and SSH into the machine: `ssh -i ec2-licensing-keypair.pem ec2-user@<ec2-public-ip-address>`
 - Install git: `sudo yum install git -y`
 - Clone the repository: `git clone https://github.com/addu390/s3-flask-example.git`
@@ -65,16 +65,16 @@
 	- `sudo rm -f /opt/Python-3.9.6.tgz`
 	- `python3 -V` or `python3.9 -V`
 
-### Install Dependencies 💺
+### Install Dependencies
 - Create Virtual Environment: `python3.9 -m venv env`
 - Activate: `source env/bin/activate`
 - Install Dependencies: `sudo python3 -m pip install -r requirements.txt`
 
-### Run the application 🚁
+### Run the application
 - `sudo python3 app.py --host=0.0.0.0 --port=80`
 **Note ⚠️** Don't use development server on production.
 
-### For production use, consider the following tutorials 😎
+### For production use, consider the following tutorials 🚁
 - [Dockerizing Django Application — Gunicorn and Nginx](https://blog.devgenius.io/dockerizing-django-application-gunicorn-and-nginx-5a74b250198f)
 - [Deploying Django Application on AWS EC2 and Docker](https://medium.com/dev-genius/deploying-django-application-on-aws-ec2-and-docker-10a1f7c29573)
 - [Deploying Django Application on AWS Fargate in 8 minutes](https://medium.com/faun/deploying-django-application-on-aws-fargate-in-8-minutes-f04373880e0a)
